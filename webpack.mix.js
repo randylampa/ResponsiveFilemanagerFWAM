@@ -1,4 +1,6 @@
-let mix = require('laravel-mix');
+let mix = require('laravel-mix'),
+        fs = require('fs');
+
 mix.options({processCssUrls: false});
 (() => {
     mix.less(
@@ -100,4 +102,12 @@ mix.options({processCssUrls: false});
 //            ['resources/assets/js/load_more.js'],
 //            'filemanager/js/load_more.js'
 //            );
+
+    let builddate = new Date();
+    let content = `# Build date\n\n${builddate}`;
+    fs.writeFile('filemanager/build_version.md', content, function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+    });
 })();
