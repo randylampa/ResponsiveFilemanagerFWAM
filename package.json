@@ -8,14 +8,19 @@
   "license": "CC-BY-NC-3.0",
   "github": "https://github.com/trippo/ResponsiveFilemanager",
   "homepage": "http://www.responsivefilemanager.com/",
+  "engines": {
+    "node": ">8 <15",
+    "npm": ">=7"
+  },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "tinymce": "^5.0.4",
-    "laravel-elixir": "*"
+    "laravel-mix": "*",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "tinymce": "^5.0.4"
   },
   "scripts": {
-    "build": "./node_modules/.bin/gulp",
-    "dist": "yarn clean && ./node_modules/.bin/gulp --production",
+    "build": "npx mix",
+    "dist": "npm run-script clean && npx mix --production",
     "clean": "rm -rf ./filemanager/css/* && rm -rf ./filemanager/js/* && rm -rf ./resources/tmp/* && rm -f ./filemanager/plugin.min.js && rm -f ./tinymce/plugins/responsivefilemanager/plugin.min.js"
   },
   "dependencies": {
