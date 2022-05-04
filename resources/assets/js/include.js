@@ -2489,7 +2489,6 @@ var encodeURL,show_animation,hide_animation,apply,apply_none,apply_img,apply_any
 	show_animation = function()
 	{
 		jQuery('#loading_container').css('display', 'block');
-		jQuery('#loading').css('opacity', '.7');
 	}
 
 	hide_animation = function()
