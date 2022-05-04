@@ -97,12 +97,6 @@ mix.options({processCssUrls: false});
             'filemanager/js/modernizr.custom.js'
             );
 
-    /* not used */
-//    mix.scripts(
-//            ['resources/assets/js/load_more.js'],
-//            'filemanager/js/load_more.js'
-//            );
-
     let builddate = new Date();
     let content = `# Build date\n\n${builddate}`;
     fs.writeFile('filemanager/build_version.md', content, function (err, data) {
