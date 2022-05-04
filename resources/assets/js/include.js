@@ -879,7 +879,7 @@ var encodeURL,show_animation,hide_animation,apply,apply_none,apply_img,apply_any
 
 		jQuery('ul.grid li figcaption').on('click','a[data-toggle="lightbox"]',function(){
 			preview_loading_animation(decodeURIComponent(jQuery(this).attr('data-url')));
-		})
+		});
 
 		jQuery('.create-file-btn').on('click', function ()
 		{
@@ -2122,11 +2122,12 @@ var encodeURL,show_animation,hide_animation,apply,apply_none,apply_img,apply_any
 		}
 		else
 		{
-			if (jQuery('#editor').val() === 'ckeditor') {
+			let editor_val = jQuery('#editor').val();
+			if (editor_val === 'ckeditor') {
 				var funcNum = getUrlParam('CKEditorFuncNum');
 				window.opener.CKEDITOR.tools.callFunction(funcNum, url);
 				window.close();
-			} else {
+			} else if (editor_val !== "none") { // i cannot specify editor_val !== "tinymce" ...
 				window.parent.postMessage({
 					sender: 'responsivefilemanager',
 					url: url,

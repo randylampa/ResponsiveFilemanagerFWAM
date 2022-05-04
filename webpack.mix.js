@@ -26,7 +26,7 @@ mix.options({processCssUrls: false});
             'filemanager/css/style.css'
             );
 
-    mix.styles(
+    mix.less(
             'resources/assets/less/rtl-style.less',
             'filemanager/css/rtl-style.css',
             );
@@ -89,7 +89,7 @@ mix.options({processCssUrls: false});
 //            'tinymce/plugins/responsivefilemanager/plugin.min.js'
 //            );
 
-    mix.scripts(
+    mix.copy(
             ['resources/assets/js/modernizr.custom.js'],
             'filemanager/js/modernizr.custom.js'
             );
