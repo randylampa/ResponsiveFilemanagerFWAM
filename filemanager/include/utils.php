@@ -435,10 +435,11 @@ function create_img($imgfile, $imgthumb, $newwidth, $newheight = null, $option =
     if (file_exists($imgfile) || strpos($imgfile, 'http') === 0) {
         if (strpos($imgfile, 'http') === 0 || image_check_memory_usage($imgfile, $newwidth, $newheight)) {
             require_once('php_image_magician.php');
+            $quality = isset($config['image_max_quality']) ? $config['image_max_quality'] : 80;
             try {
                 $magicianObj = new imageLib($imgfile);
                 $magicianObj->resizeImage($newwidth, $newheight, $option);
-                $magicianObj->saveImage($imgthumb, 80);
+                $magicianObj->saveImage($imgthumb, $quality);
             } catch (Exception $e) {
                 return $e->getMessage();
             }

@@ -6,6 +6,7 @@ if (session_id() == '') {
 
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
+mb_http_input('UTF-8');
 mb_language('uni');
 mb_regex_encoding('UTF-8');
 ob_start('mb_output_handler');
@@ -179,7 +180,7 @@ $config = array(
     | keys should only containt (a-z A-Z 0-9 \ . _ -) characters
     | if you are integrating lets say to a cms for admins, i recommend making keys randomized something like this:
     | $username = 'Admin';
-    | $salt = 'dsflFWR9u2xQa' (a hard coded string)
+    | $salt = 'dsflFWR9u2xQa'; // (a hard coded string)
     | $akey = md5($username.$salt);
     | DO NOT use 'key' as access key!
     | Keys are CASE SENSITIVE!
@@ -218,7 +219,7 @@ $config = array(
     |--------------------------------------------------------------------------
     |
     */
-    'filePermission' => 0755,
+    'filePermission' => 0666,
     'folderPermission' => 0777,
 
 
@@ -274,6 +275,7 @@ $config = array(
     'image_max_width'                         => 0,
     'image_max_height'                        => 0,
     'image_max_mode'                          => 'auto',
+    'image_max_quality'                       => 85, // quality of cropped image
     /*
     #  $option:  0 / exact = defined size;
     #            1 / portrait = keep aspect set height;
@@ -567,9 +569,9 @@ return array_merge(
         'tui_defaults_config' => array(
             //'common.bi.image'                   => $config['common.bi.image'],
             //'common.bisize.width'               => $config['common.bisize.width'],
-            //'common.bisize.height'              => $config['common.bisize.height'], 
+            //'common.bisize.height'              => $config['common.bisize.height'],
             'common.backgroundImage'            => $config['common.backgroundImage'],
-            'common.backgroundColor'            => $config['common.backgroundColor'], 
+            'common.backgroundColor'            => $config['common.backgroundColor'],
             'common.border'                     => $config['common.border'],
             'header.backgroundImage'            => $config['header.backgroundImage'],
             'header.backgroundColor'            => $config['header.backgroundColor'],

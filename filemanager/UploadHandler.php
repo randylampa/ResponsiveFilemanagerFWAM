@@ -1571,7 +1571,18 @@ class UploadHandler
                         if ($this->options['config']['image_max_width'] == 0) $srcWidth = $this->options['config']['image_max_height']*$srcWidth/$srcHeight;
                     }
 
-                    if ($resize){ create_img($targetFile, $targetFile, $srcWidth, $srcHeight, $this->options['config']['image_max_mode']); }
+                    if ($resize) {
+                        create_img(
+                                $targetFile,
+                                $targetFile,
+                                $srcWidth,
+                                $srcHeight,
+                                $this->options['config']['image_max_mode'],
+                                [
+                                    'image_max_quality' => $this->options['config']['image_max_quality'],
+                                ]
+                        );
+                    }
                 }
             }
         }
