@@ -648,7 +648,7 @@ var encodeURL,show_animation,hide_animation,apply,apply_none,apply_img,apply_any
 				// Uncomment the following to send cross-domain cookies:
 				//xhrFields: {withCredentials: true},
 				url: 'upload.php',
-				maxChunkSize: 2 * 1024 * 1024, // 2 MB
+				maxChunkSize: 10 * 1024 * 1024, // 2 MB // 2 -> 10 R#???
 			});
 			jQuery('#fileupload').bind('fileuploaddrop', function (e, data) {
 				jQuery('.uploader').show(200);
