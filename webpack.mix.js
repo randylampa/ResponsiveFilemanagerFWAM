@@ -17,7 +17,6 @@ mix.options({processCssUrls: false});
             [
                 'node_modules/bootstrap/docs/assets/css/bootstrap.css',
                 'node_modules/bootstrap/docs/assets/css/bootstrap-responsive.css',
-                'vendor/bootstrap-modal/css/bootstrap-modal.css',
                 'node_modules/jquery-contextmenu/dist/jquery.contextMenu.css',
                 'node_modules/tui-color-picker/dist/tui-color-picker.css',
                 'node_modules/tui-image-editor/dist/tui-image-editor.css',
@@ -53,8 +52,6 @@ mix.options({processCssUrls: false});
                 "node_modules/jquery-scrollstop/jquery.scrollstop.js",
                 "node_modules/bootbox.js/bootbox.js",
                 "node_modules/jquery-touchswipe/jquery.touchSwipe.js",
-                "vendor/bootstrap-modal/js/bootstrap-modalmanager.js",
-                "vendor/bootstrap-modal/js/bootstrap-modal.js",
                 "node_modules/clipboard/dist/clipboard.js",
                 "node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.js",
             ],
