@@ -1522,7 +1522,7 @@ $get_params = http_build_query($get_params);
                                                             ?>"></i></a>
 
                                                     <?php if ($is_img && $src_thumb != "") { ?>
-                                                        <a class="tip-right preview" title="<?php echo trans('Preview') ?>" data-featherlight="<?php echo $src; ?>" href="#"><i class=" icon-eye-open"></i></a>
+                                                        <a class="tip-right preview" title="<?php echo trans('Preview') ?>" data-url="<?php echo $src; ?>" data-toggle="lightbox" href="#lightbox"><i class=" icon-eye-open"></i></a>
                                                         <?php
                                                     } elseif (($is_video || $is_audio) && in_array(
                                                                     $file_array['extension'],
@@ -1630,8 +1630,20 @@ $get_params = http_build_query($get_params);
             </div>
         </div>
     </div>
-
     <!-- player div end -->
+
+    <div id="lightbox" class="lightbox hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="lightbox-header">
+            <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+        </div>
+        <div class="lightbox-content">
+            <img id="full-img" src="#" />
+        </div>
+        <div class="lightbox-footer">
+            <button class="btn btn-small btn-primary">Click</button>
+        </div>
+    </div>
+
     <?php if ($config['tui_active']) { ?>
 
         <div id="tui-image-editor" style="height: 800px; position: fixed;" class="hide">
