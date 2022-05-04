@@ -1153,7 +1153,9 @@ var encodeURL,show_animation,hide_animation,apply,apply_none,apply_img,apply_any
 			}
 		});
 
-		myLazyLoad = new LazyLoad();
+		myLazyLoad = new LazyLoad({
+            elements_selector: "img" // see https://github.com/verlok/vanilla-lazyload/blob/17.0.1/UPGRADE.md
+        });
 		clipboard = new Clipboard('.btn');
 	});
 
