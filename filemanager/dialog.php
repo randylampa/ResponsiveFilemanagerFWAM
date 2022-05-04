@@ -1640,7 +1640,7 @@ $get_params = http_build_query($get_params);
             <img id="full-img" src="#" />
         </div>
         <div class="lightbox-footer">
-            <button class="btn btn-small btn-primary">Click</button>
+            <!--<button class="btn btn-small btn-primary">Click</button>-->
         </div>
     </div>
 
