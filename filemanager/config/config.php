@@ -275,7 +275,8 @@ $config = array(
     'image_max_width'                         => 0,
     'image_max_height'                        => 0,
     'image_max_mode'                          => 'auto',
-    'image_max_quality'                       => 85, // quality of cropped image
+    'image_max_quality'                       => 85, // quality of limited image
+    'image_max_filesize'                      => 5, // size of unlimited image
     /*
     #  $option:  0 / exact = defined size;
     #            1 / portrait = keep aspect set height;

@@ -413,9 +413,12 @@ function ftp_con($config)
  * @param string $option Type of resize
  *
  * @param array $config
+ *   ftp_host
+ *   quality
  * @return bool
  */
-function create_img($imgfile, $imgthumb, $newwidth, $newheight = null, $option = "crop", $config = array())
+function create_img($imgfile, $imgthumb, $newwidth, $newheight = null, $option = "crop",
+        $config = array())
 {
     $result = false;
     if (isset($config['ftp_host']) && $config['ftp_host']) {
@@ -435,7 +438,7 @@ function create_img($imgfile, $imgthumb, $newwidth, $newheight = null, $option =
     if (file_exists($imgfile) || strpos($imgfile, 'http') === 0) {
         if (strpos($imgfile, 'http') === 0 || image_check_memory_usage($imgfile, $newwidth, $newheight)) {
             require_once('php_image_magician.php');
-            $quality = isset($config['image_max_quality']) ? $config['image_max_quality'] : 80;
+            $quality = isset($config['quality']) ? $config['quality'] : 80;
             try {
                 $magicianObj = new imageLib($imgfile);
                 $magicianObj->resizeImage($newwidth, $newheight, $option);

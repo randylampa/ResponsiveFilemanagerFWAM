@@ -1524,6 +1524,7 @@ class UploadHandler
                 }
                 else
                 {
+                    $imgmod = false;
                     $imginfo = getimagesize($targetFile);
                     $srcWidth = $imginfo[0];
                     $srcHeight = $imginfo[1];
@@ -1552,23 +1553,35 @@ class UploadHandler
                         $srcWidth = $this->options['config']['image_resizing_width'];
                         $srcHeight = $this->options['config']['image_resizing_height'];
                         create_img($targetFile, $targetFile, $this->options['config']['image_resizing_width'], $this->options['config']['image_resizing_height'], $this->options['config']['image_resizing_mode']);
+                        $imgmod = true;
                     }
 
                     //max resizing limit control
                     $resize = FALSE;
-                    if ($this->options['config']['image_max_width'] != 0 && $srcWidth > $this->options['config']['image_max_width'] && $this->options['config']['image_resizing_override'] === FALSE)
-                    {
+                    if (
+                            $this->options['config']['image_max_width'] != 0 &&
+                            $srcWidth > $this->options['config']['image_max_width'] &&
+                            $this->options['config']['image_resizing_override'] === FALSE
+                    ) {
                         $resize = TRUE;
                         $srcWidth = $this->options['config']['image_max_width'];
 
-                        if ($this->options['config']['image_max_height'] == 0) $srcHeight = $this->options['config']['image_max_width']*$srcHeight/$srcWidth;
+                        if ($this->options['config']['image_max_height'] == 0) {
+                            $srcHeight = $this->options['config']['image_max_width'] * $srcHeight / $srcWidth;
+                        }
                     }
 
-                    if ($this->options['config']['image_max_height'] != 0 && $srcHeight > $this->options['config']['image_max_height'] && $this->options['config']['image_resizing_override'] === FALSE){
+                    if (
+                            $this->options['config']['image_max_height'] != 0 &&
+                            $srcHeight > $this->options['config']['image_max_height'] &&
+                            $this->options['config']['image_resizing_override'] === FALSE
+                    ) {
                         $resize = TRUE;
                         $srcHeight = $this->options['config']['image_max_height'];
 
-                        if ($this->options['config']['image_max_width'] == 0) $srcWidth = $this->options['config']['image_max_height']*$srcWidth/$srcHeight;
+                        if ($this->options['config']['image_max_width'] == 0) {
+                            $srcWidth = $this->options['config']['image_max_height'] * $srcWidth / $srcHeight;
+                        }
                     }
 
                     if ($resize) {
@@ -1579,7 +1592,23 @@ class UploadHandler
                                 $srcHeight,
                                 $this->options['config']['image_max_mode'],
                                 [
-                                    'image_max_quality' => $this->options['config']['image_max_quality'],
+                                    'quality' => $this->options['config']['image_max_quality'],
+                                ]
+                        );
+                        $imgmod = true;
+                    }
+
+                    if (!$imgmod && filesize($targetFile) > $this->options['config']['image_max_filesize'] * 1024 * 1024) {
+                        // not modified & too large in filesize
+                        list($tgtWidth, $tgtHeight) = $imginfo;
+                        create_img(
+                                $targetFile,
+                                $targetFile,
+                                $tgtWidth,
+                                $tgtHeight,
+                                'auto',
+                                [
+                                    'quality' => $this->options['config']['image_max_quality'],
                                 ]
                         );
                     }
